@@ -1,9 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { jwtVerify } from 'jose'
-
-const SECRET_KEY = new TextEncoder().encode(
-	process.env.JWT_SECRET || 'your-secret-key'
-)
 
 export default async function middleware(req: NextRequest) {
 	const token = req.cookies.get('token')?.value
@@ -11,8 +6,6 @@ export default async function middleware(req: NextRequest) {
 	console.log(token, 'token')
 	if (token) {
 		try {
-			// const { payload } = await jwtVerify(token, SECRET_KEY)
-			// console.log('decoded', payload.username)
 			if (url.pathname === '/login' || url.pathname === '/register') {
 				return NextResponse.redirect(new URL('/', req.url))
 			}

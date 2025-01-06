@@ -18,7 +18,7 @@ const getUserFromToken = async (): Promise<UserType | null> => {
 			new TextEncoder().encode(SECRET_KEY)
 		)
 		return {
-			id: payload.id as string,
+			id: Number(payload.id),
 			username: payload.username as string,
 		} as UserType
 	}

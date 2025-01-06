@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
 			[postid]
 		)
 
-		const commentsArray = comments.rows.map((row) => ({
+		const commentsArray = comments.rows.map((row: Array<string>) => ({
 			id: row[0],
 			postid: row[1],
 			username: row[2],
@@ -19,18 +19,20 @@ export async function GET(req: NextRequest) {
 			likes: row[4],
 			createdAt: row[5],
 		}))
-		const orderedCommentsByDateAsc = commentsArray.sort((a, b) => {
-			return (
-				new Date(a.createdAt).getTime() -
-				new Date(b.createdAt).getTime()
-			)
-		})
+		const orderedCommentsByDateAsc = commentsArray.sort(
+			(a: { createdAt: string }, b: { createdAt: string }) => {
+				return (
+					new Date(a.createdAt).getTime() -
+					new Date(b.createdAt).getTime()
+				)
+			}
+		)
 		return new NextResponse(JSON.stringify(orderedCommentsByDateAsc), {
 			status: 200,
 			headers: { 'Content-Type': 'application/json' },
 		})
 	} catch (e) {
-		return new NextResponse(JSON.stringify({ error: e.message }), {
+		return new NextResponse(JSON.stringify({ e }), {
 			status: 500,
 			headers: { 'Content-Type': 'application/json' },
 		})
@@ -53,7 +55,7 @@ export async function POST(req: NextRequest) {
 			status: 200,
 		})
 	} catch (e) {
-		return new NextResponse(JSON.stringify({ error: e.message }), {
+		return new NextResponse(JSON.stringify({ e }), {
 			status: 500,
 			headers: { 'Content-Type': 'application/json' },
 		})

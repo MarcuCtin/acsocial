@@ -13,12 +13,9 @@ export async function POST(req: NextRequest) {
 		)
 		return new NextResponse(JSON.stringify(body), { status: 200 })
 	} catch (e) {
-		return {
+		return new NextResponse(JSON.stringify({ error: e.message }), {
 			status: 500,
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({ error: e.message }),
-		}
+			headers: { 'Content-Type': 'application/json' },
+		})
 	}
 }

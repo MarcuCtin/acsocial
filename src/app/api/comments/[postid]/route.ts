@@ -3,8 +3,6 @@ import { getOracleConnection } from '../../../../../oracleClient'
 
 export async function GET(req: NextRequest) {
 	try {
-		console.log(req.url)
-
 		const postid = req.url.split('/comments/')[1]
 
 		const connection = await getOracleConnection()

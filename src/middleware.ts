@@ -3,7 +3,6 @@ import { NextRequest, NextResponse } from 'next/server'
 export default async function middleware(req: NextRequest) {
 	const token = req.cookies.get('token')?.value
 	const url = req.nextUrl.clone()
-	console.log(token, 'token')
 	if (token) {
 		try {
 			if (url.pathname === '/login' || url.pathname === '/register') {

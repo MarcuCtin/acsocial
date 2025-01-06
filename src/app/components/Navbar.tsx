@@ -40,15 +40,12 @@ const Navbar = () => {
 	const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorEl(event.currentTarget)
 	}
-	const [user, setUser] = useState<UserType>({} as UserType)
-	// const [username, setUsername] = useState('')
+
 	const [username, setUsername] = useState('')
 	useEffect(() => {
 		const getUser = async () => {
 			const user = await getUserFromToken()
-			console.log(user)
 			if (user) {
-				setUser(user)
 				setUsername(user.username)
 			}
 		}

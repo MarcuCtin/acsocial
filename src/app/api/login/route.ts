@@ -17,7 +17,6 @@ export async function POST(req: NextRequest) {
 			`SELECT * FROM users WHERE username = :username AND password = :password`,
 			[username, password]
 		)
-		console.log(result)
 		if (!result || !result.rows) {
 			return new NextResponse(
 				JSON.stringify({ message: 'Invalid username or password' }),

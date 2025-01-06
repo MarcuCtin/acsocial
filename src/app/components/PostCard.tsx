@@ -28,7 +28,6 @@ const PostCard: FC<Props> = ({ post }) => {
 		if (response.status === 200) {
 			const data = await response.json()
 			setLikes(data)
-			console.log('Like added')
 		} else {
 			console.error('Failed to add like')
 		}
@@ -37,7 +36,7 @@ const PostCard: FC<Props> = ({ post }) => {
 		fetch(`/api/post/${post.id}/likes`)
 			.then((res) => res.json())
 			.then((data) => setLikes(data))
-	}, [])
+	}, [post.id])
 	return (
 		<>
 			<Card sx={{ marginBottom: 2, width: '100%', flexShrink: 0 }}>

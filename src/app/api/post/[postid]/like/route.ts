@@ -7,7 +7,6 @@ export async function POST(req: NextRequest) {
 		const postid = req.url.split('/post/')[1].slice(0, 1)
 		const user = await getUserFromToken()
 		const userid = user && user.id
-		console.log(userid, 'userid', postid, 'postid')
 		const connection = await getOracleConnection()
 		await connection.execute(
 			`

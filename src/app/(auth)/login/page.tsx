@@ -41,7 +41,6 @@ const LoginPage = () => {
 				verifySession()
 			} else {
 				setError('Failed to sign in')
-				console.log(response)
 			}
 			setLoading(false)
 		} catch (e) {

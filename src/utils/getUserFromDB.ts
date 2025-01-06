@@ -13,7 +13,6 @@ export async function getUserFromDB(credentials: {
             AND password = ${credentials.password}
         `
 		const result = await connection.execute(query)
-		console.log(result)
 		if (result.rows && result.rows.length === 0) {
 			return null
 		}

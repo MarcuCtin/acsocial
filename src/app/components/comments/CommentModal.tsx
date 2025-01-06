@@ -39,7 +39,7 @@ const CommentModal: FC<Props> = ({ isModalOpen, setIsModalOpen, post }) => {
 				.then((data) => setComments(data))
 		}
 		getComments()
-	}, [])
+	}, [post.id])
 	const onsubmit = async (commentText: string) => {
 		fetch(`/api/comments/${post.id}`, {
 			method: 'POST',

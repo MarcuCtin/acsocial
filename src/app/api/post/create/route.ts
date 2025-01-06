@@ -5,9 +5,8 @@ export async function POST(req: NextRequest) {
 	try {
 		const body = await req.json()
 		const { username, postImage, postText } = body
-		console.log(body)
 		const connection = await getOracleConnection()
-		const result = await connection.execute(
+		await connection.execute(
 			`INSERT INTO posts (username, postImage, postText) VALUES (:username, :postImage, :postText)`,
 			[username, postImage, postText],
 			{ autoCommit: true }

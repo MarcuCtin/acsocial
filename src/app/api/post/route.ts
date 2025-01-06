@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 import { getOracleConnection } from '../../../../oracleClient'
-export async function GET(req: NextRequest) {
+export async function GET() {
 	try {
 		const connection = await getOracleConnection()
 		const result = await connection.execute(`SELECT * FROM posts`)
@@ -17,7 +17,6 @@ export async function GET(req: NextRequest) {
 				new Date(a.createdAt).getTime()
 			)
 		})
-		console.log(result)
 		return new NextResponse(JSON.stringify(orderedPostsByDateAsc), {
 			status: 200,
 			headers: { 'Content-Type': 'application/json' },

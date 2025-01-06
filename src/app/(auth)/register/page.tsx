@@ -27,7 +27,6 @@ const RegisterPage = () => {
 		if (password !== confirmPassword) {
 			alert('Passwords do not match')
 		}
-		console.log({ username, email, password })
 		await fetch('/api/register', {
 			method: 'POST',
 			body: JSON.stringify({ username, email, password }),

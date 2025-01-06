@@ -5,7 +5,6 @@ import { UserType } from './UserType'
 const SECRET_KEY = process.env.JWT_SECRET
 const getUserFromToken = async (): Promise<UserType | null> => {
 	const cookieStore = await cookies()
-	console.log(cookieStore, 'cookieStore')
 	const token = cookieStore.get('token')?.value
 	if (!token) {
 		return null

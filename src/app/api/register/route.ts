@@ -24,7 +24,5 @@ export async function POST(req: NextRequest) {
 			JSON.stringify({ message: 'Registration failed' }),
 			{ status: 500, headers: { 'Content-Type': 'application/json' } }
 		)
-	} finally {
-		await connection.close()
 	}
 }

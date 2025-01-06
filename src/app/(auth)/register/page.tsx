@@ -36,16 +36,18 @@ const RegisterPage = () => {
 			headers: {
 				'Content-Type': 'application/json',
 			},
-		}).then((response) => {
-			if (response.ok) {
-				redirect('/login')
-				alert('Account created successfully')
-			} else {
-				setError("Failed to create account")
-			}
-		}).finally(() => {
-			setLoading(false)
 		})
+			.then((response) => {
+				if (response.ok) {
+					redirect('/login')
+					alert('Account created successfully')
+				} else {
+					setError('Failed to create account')
+				}
+			})
+			.finally(() => {
+				setLoading(false)
+			})
 	}
 	return (
 		<Container component='main' maxWidth='xs'>
@@ -119,8 +121,7 @@ const RegisterPage = () => {
 						variant='contained'
 						sx={{ mt: 3, mb: 2 }}
 					>
-						{|
-							loading ? 'Loading...' : 'Sign Up'}
+						{loading ? 'Loading...' : 'Sign Up'}
 					</Button>
 					<Typography color='error'>{error}</Typography>
 					<Grid2 container justifyContent='flex-end'>

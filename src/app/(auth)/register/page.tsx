@@ -12,10 +12,12 @@ import {
 	Link,
 } from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
-import { useRouter } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 
 const RegisterPage = () => {
 	const router = useRouter()
+	const [loading, setLoading] = React.useState(false)
+	const [error, setError] = React.useState<string | null>(null)
 	const handleFormSubmit = async (
 		event: React.FormEvent<HTMLFormElement>
 	) => {
@@ -27,6 +29,7 @@ const RegisterPage = () => {
 		if (password !== confirmPassword) {
 			alert('Passwords do not match')
 		}
+		setLoading(true)
 		await fetch('/api/register', {
 			method: 'POST',
 			body: JSON.stringify({ username, email, password }),
@@ -35,11 +38,13 @@ const RegisterPage = () => {
 			},
 		}).then((response) => {
 			if (response.ok) {
-				router.push('/')
+				redirect('/login')
 				alert('Account created successfully')
 			} else {
-				alert('Account creation failed')
+				setError("Failed to create account")
 			}
+		}).finally(() => {
+			setLoading(false)
 		})
 	}
 	return (
@@ -114,8 +119,10 @@ const RegisterPage = () => {
 						variant='contained'
 						sx={{ mt: 3, mb: 2 }}
 					>
-						Sign Up
+						{|
+							loading ? 'Loading...' : 'Sign Up'}
 					</Button>
+					<Typography color='error'>{error}</Typography>
 					<Grid2 container justifyContent='flex-end'>
 						<Grid2 size={'auto'}>
 							<Link

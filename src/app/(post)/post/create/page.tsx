@@ -1,8 +1,7 @@
 'use client'
-import PostCard from '@/app/components/PostCard'
 import PostForm from '@/app/components/PostForm'
 import getUserFromToken from '@/utils/getUserFromToken'
-import { Feed } from '@mui/icons-material'
+
 import { Box } from '@mui/material'
 import { redirect } from 'next/navigation'
 import React, { useEffect, useState } from 'react'

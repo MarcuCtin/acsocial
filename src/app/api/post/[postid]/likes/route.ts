@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { getOracleConnection } from '../../../../../../oracleClient'
 
-export async function GET(req: Request, res: Response) {
+export async function GET(req: Request) {
 	try {
 		const postid = req.url.split('/post/')[1].slice(0, 1)
 		const connection = await getOracleConnection()

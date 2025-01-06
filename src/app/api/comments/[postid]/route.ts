@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getOracleConnection } from '../../../../../oracleClient'
-import { connect } from 'http2'
 
 export async function GET(req: NextRequest) {
 	try {
@@ -47,7 +46,7 @@ export async function POST(req: NextRequest) {
 		const body = await req.json()
 		const { username, text } = body
 		const connection = await getOracleConnection()
-		const result = await connection.execute(
+		await connection.execute(
 			`INSERT INTO comments (username,text,postid) VALUES (:username, :text,:postid)`,
 			[username, text, postid],
 			{ autoCommit: true }

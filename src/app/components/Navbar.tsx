@@ -16,13 +16,11 @@ import {
 } from '@mui/material'
 import {
 	Search as SearchIcon,
-	AccountCircle,
 	Settings,
 	Notifications,
 } from '@mui/icons-material'
 import React, { useState, useEffect } from 'react'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
-import { cookies } from 'next/headers'
 import getUserFromToken from '@/utils/getUserFromToken'
 import { UserType } from '@/utils/UserType'
 import { redirect } from 'next/navigation'

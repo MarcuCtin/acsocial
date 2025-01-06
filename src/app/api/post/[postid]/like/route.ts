@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getOracleConnection } from '../../../../../../oracleClient'
-import { cookies } from 'next/headers'
 import getUserFromToken from '@/utils/getUserFromToken'
 
 export async function POST(req: NextRequest) {
@@ -10,7 +9,7 @@ export async function POST(req: NextRequest) {
 		const userid = user && user.id
 		console.log(userid, 'userid', postid, 'postid')
 		const connection = await getOracleConnection()
-		const result = await connection.execute(
+		await connection.execute(
 			`
             INSERT INTO likes (postid,userid) VALUES (:postid,:userid)
             `,

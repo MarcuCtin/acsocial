@@ -12,10 +12,9 @@ import {
 	Grid2,
 } from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
-import { useRouter } from 'next/navigation'
+
 import { redirect } from 'next/navigation'
-import { signIn, useSession } from 'next-auth/react'
-import getUserFromToken from '@/utils/getUserFromToken'
+
 import { verifySession } from '@/utils/verifySession'
 
 const LoginPage = () => {
